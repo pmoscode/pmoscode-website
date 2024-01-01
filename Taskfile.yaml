@@ -1,0 +1,16 @@
+version: 3
+
+tasks:
+  initTheme:
+    desc: Downloads the theme as Hugo module
+    cmd: hugo mod vendor
+
+  serve:
+    desc: Starts the dev server
+    cmd: hugo server -D --config development --renderToDisk --logLevel info --disableFastRender
+
+  build:
+    desc: Builds the static website
+    cmds:
+      - rm -Rf public
+      - hugo --gc --minify --config production --logLevel info
