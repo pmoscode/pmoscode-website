@@ -30,7 +30,7 @@ languages:
         subtitle: Jede Lösung benötigt ein Problem
 
 params:
-  favicon:  # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
+  favicon: /favicon.ico
 
   footer:
     since: 2019
