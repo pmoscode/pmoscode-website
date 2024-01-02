@@ -3,8 +3,8 @@ title: "DIY fly screen"
 date: "2017-04-08"
 author: "pmoscode"
 description: "How to build a simple fly screen for windows"
-tags: ["house modding", "fly screen"]
-categories: ["woodworking"]
+tags: ["house"]
+categories: ["woodwork"]
 ---
 
 A few days ago my wife asked my to buy some fly screens for the main window in our living room.

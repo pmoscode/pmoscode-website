@@ -3,8 +3,8 @@ title: "Last Pixel Standing - The Game"
 date: "2020-06-25"
 author: "pmoscode"
 description: "A short game about escaping from a dungeon filled with monsters."
-tags: ["game","Godot","pixel art"]
-categories: ["games"]
+tags: ["game"]
+categories: ["computer"]
 image: "img/intro.png"
 ---
 

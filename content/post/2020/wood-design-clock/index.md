@@ -3,9 +3,9 @@ title: "Wood Design Clock"
 date: "2020-01-15"
 author: "pmoscode"
 description: "DIY a wooden clock out of old shelves"
-tags: ["clock", "house modding", "gifts"]
-categories: ["woodworking"]
-image:  "img/intro.jpg"
+tags: ["house", "gift"]
+categories: ["woodwork"]
+image: "img/intro.jpg"
 ---
 
 For my darling's birthday, I had a very special present in mind.

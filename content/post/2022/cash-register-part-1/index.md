@@ -3,8 +3,8 @@ title: "DIY cash register toy - part 1 (Introduction)"
 date: "2022-01-02"
 author: "pmoscode"
 description: "First part of DIY cash register toy from actually real parts"
-tags: ["cash register", "raspberry pi", "barcode scanner", "toy"]
-categories: ["toys", "hardware"]
+tags: ["raspberry pi", "mod"]
+categories: ["hardware"]
 image: "img/intro.gif"
 ---
 

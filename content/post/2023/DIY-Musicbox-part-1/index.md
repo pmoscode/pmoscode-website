@@ -3,8 +3,8 @@ title: "DIY Music Box - Part 1"
 date: "2023-01-31"
 author: "pmoscode"
 description: "A DIY musix box (not only) for children. Based on Raspberry Pi Zero."
-tags: [ "raspberry pi", "toy", "children", "music" ]
-categories: [ "hardware", "toys", "software" ]
+tags: ["raspberry pi","gift"]
+categories: ["hardware","lasercutter"]
 image: "img/intro.jpg"
 draft: true
 ---

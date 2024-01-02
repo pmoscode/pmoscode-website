@@ -3,8 +3,8 @@ title: "Pi cam holder"
 date: "2020-04-15"
 author: "pmoscode"
 description: "A Pi cam holder for the Anycubic I3 Mega. Mounted on the heat bed."
-tags: ["Anycubic I3 Mega", "raspberry pi", "3D printer tools"]
-categories: ["3D printing"]
+tags: ["raspberry pi", "3D printer"]
+categories: ["3D print"]
 image: "img/intro.jpg"
 ---
 I came around with the idea to access my 3D printer remotely. Until then I had to sit in front of my desktop computer and print via Cura.

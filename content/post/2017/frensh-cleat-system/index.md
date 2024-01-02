@@ -4,8 +4,8 @@ date: "2017-01-23"
 author: "pmoscode"
 description: "What is french cleat and how it is build?"
 image: "img/header.jpg"
-tags: ["shop tools", "French Cleat"]
-categories: ["woodworking"]
+tags: ["workshop", "house"]
+categories: ["woodwork"]
 ---
 
 My first contribution will be the realization of a "French Cleat" system, which has found its place in our storage room.

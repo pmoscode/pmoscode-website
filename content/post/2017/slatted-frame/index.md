@@ -4,8 +4,8 @@ date: "2017-04-12"
 author: "pmoscode"
 description: "How to build a slatted frame"
 image: "img/intro.jpg"
-tags: ["bed", "slatted frame"]
-categories: ["woodworking"]
+tags: ["house"]
+categories: ["woodwork"]
 ---
 
 After 10 years my slatted frame starts to break. One latch broke and a few more started to bend.

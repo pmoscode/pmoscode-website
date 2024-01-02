@@ -3,8 +3,8 @@ title: "DIY Air Assist for the Xtool M1"
 date: "2023-03-09"
 author: "pmoscode"
 description: "Fix the design flaw of the xTool M1. The air flow is too weak to make a clean - dust free - cut or engraving."
-tags: ["xtool m1", "air flow"]
-categories: ["laser", "mods", "hardware"]
+tags: ["mod"]
+categories: ["lasercutter","hardware"]
 image: "img/intro.jpg"
 ---
 

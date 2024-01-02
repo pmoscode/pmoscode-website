@@ -3,8 +3,8 @@ title: "Volkswagen Coasters"
 date: "2020-10-28"
 author: "pmoscode"
 description: "A 3D print of coasters with the Volkswagen logo"
-tags: ["Volkswagen", "coaster", "pla"]
-categories: ["3D printing"]
+tags: ["house"]
+categories: ["3D print"]
 image: "img/intro.jpg"
 ---
 
