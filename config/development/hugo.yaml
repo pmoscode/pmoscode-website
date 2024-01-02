@@ -20,14 +20,14 @@ languages:
       sidebar:
         subtitle: Every solution requires a problem...
 
-  de:
-    languageName: Deutsch
-    title: pmoscode
-    weight: 1
-    params:
-      description: Wir können
-      sidebar:
-        subtitle: Jede Lösung benötigt ein Problem
+#  de:
+#    languageName: Deutsch
+#    title: pmoscode
+#    weight: 1
+#    params:
+#      description: Wir können
+#      sidebar:
+#        subtitle: Jede Lösung benötigt ein Problem
 
 params:
   favicon: /favicon.ico
