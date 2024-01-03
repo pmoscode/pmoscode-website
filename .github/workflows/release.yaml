@@ -96,7 +96,9 @@ jobs:
           name: page
 
       - name: Install lftp
-        run: apt-get install -y lftp
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y lftp
 
       - name: Transfer to webspace
         run: lftp -e "set ssl:verify-certificate false; open pmoscode.de; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --only-newer --ignore-time --verbose --delete public/ httpdocs/; bye"
