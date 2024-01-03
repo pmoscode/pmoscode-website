@@ -103,4 +103,4 @@ jobs:
       - name: Transfer to webspace
         run: |
           ls -lrth
-          lftp -e "set ssl:verify-certificate false; open pmoscode.de; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --only-newer --ignore-time --verbose --delete ./ httpdocs/; bye"
+          lftp -e "set ssl:verify-certificate false; open pmoscode.de; user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}; mirror -X .* -X .*/ --reverse --only-newer --ignore-time --verbose --delete ./ httpdocs/; bye"
