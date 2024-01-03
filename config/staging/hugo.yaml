@@ -1,4 +1,4 @@
-baseURL: "<resolved via CI>"
+baseURL: "https://pmoscode.github.io/pmoscode-website/"
 languageCode: "en-us"
 title: "pmoscode"
 copyright: pmoscode
