@@ -99,6 +99,26 @@ menu:
       url: https://github.com/pmoscode
       params:
         icon: brand-github
+    - identifier: medium
+      name: Medium
+      url: https://medium.com/@info_26971
+      params:
+        icon: brand-medium
+    - identifier: substack
+      name: Substack
+      url: https://pmoscode.substack.com/
+      params:
+        icon: brand-substack
+    - identifier: tumblr
+      name: Tumblr
+      url: https://www.tumblr.com/blog/pmoscode
+      params:
+        icon: brand-tumblr
+    - identifier: bluesky
+      name: Bluesky
+      url: https://bsky.app/profile/pmoscode.bsky.social
+      params:
+        icon: brand-bluesky
 
 related:
   includeNewer: true
