@@ -54,17 +54,17 @@ params:
       default: Licensed under CC BY-NC-SA 4.0
 
   comments:
-    enabled: false
+    enabled: true
     provider: giscus
 
     giscus:
-      repo:
-      repoID:
-      category:
-      categoryID:
-      mapping:
-      lightTheme:
-      darkTheme:
+      repo: pmoscode/pmoscode-website
+      repoID: R_kgDOKOWT7g
+      category: Comment
+      categoryID: DIC_kwDOKOWT7s4CcKcj
+      mapping: title
+      lightTheme: false
+      darkTheme: true
       reactionsEnabled: 1
       emitMetadata: 0
 
