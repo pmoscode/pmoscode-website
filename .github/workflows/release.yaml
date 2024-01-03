@@ -57,8 +57,16 @@ jobs:
         run: |
           hugo --gc --minify --config ${{ env.STAGE }}
 
-      - name: Upload artifact
+      - name: Upload artifact (remote)
         uses: actions/upload-artifact@v4
+        if: github.ref_type == 'tag'
+        with:
+          name: page
+          path: ./public
+
+      - name: Upload artifact (gh-pages)
+        uses: actions/upload-pages-artifact@v3
+        if: github.ref_type == 'branch'
         with:
           name: page
           path: ./public
