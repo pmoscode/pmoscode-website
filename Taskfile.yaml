@@ -7,10 +7,12 @@ tasks:
 
   serve:
     desc: Starts the dev server
-    cmd: hugo server -D --config development --renderToDisk --logLevel info --disableFastRender
+    cmds:
+      - rm -Rf public
+      - hugo server -D --environment development --renderToDisk --logLevel info --disableFastRender
 
   build:
     desc: Builds the static website
     cmds:
       - rm -Rf public
-      - hugo --gc --minify --config production --logLevel info
+      - hugo --gc --minify --environment production --logLevel info
