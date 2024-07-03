@@ -1,9 +1,13 @@
 version: 3
 
 tasks:
-  initTheme:
+  theme:init:
     desc: Downloads the theme as Hugo module
     cmd: hugo mod vendor
+
+  theme:update:
+    desc: Update golang and the theme according to go.mod
+    cmd: hugo mod get -u
 
   serve:
     desc: Starts the dev server
