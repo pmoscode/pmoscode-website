@@ -9,7 +9,7 @@ tasks:
     desc: Starts the dev server
     cmds:
       - rm -Rf public
-      - hugo server -D --environment development --renderToDisk --logLevel info --disableFastRender
+      - hugo server -D --environment development --logLevel info --disableFastRender
 
   build:
     desc: Builds the static website
