@@ -30,6 +30,9 @@ languages:
 #        subtitle: Jede Lösung benötigt ein Problem
 
 params:
+  pagination:
+    pagerSize: 5
+
   favicon: /favicon.ico
 
   footer:
