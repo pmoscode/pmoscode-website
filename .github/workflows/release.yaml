@@ -65,7 +65,7 @@ jobs:
           path: ./public
 
       - name: Upload artifact (gh-pages)
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         if: github.ref_type == 'branch'
         with:
           name: page
