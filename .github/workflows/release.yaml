@@ -58,7 +58,7 @@ jobs:
           hugo --gc --minify --environment ${{ env.STAGE }}
 
       - name: Upload artifact (remote)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: github.ref_type == 'tag'
         with:
           name: page
@@ -91,7 +91,7 @@ jobs:
     if: github.ref_type == 'tag'
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: page
 
