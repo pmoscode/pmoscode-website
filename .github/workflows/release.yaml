@@ -98,6 +98,7 @@ jobs:
       - name: Prepare SSH for rsync
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         run: |
           # Install rsync and openssh-client
@@ -105,8 +106,9 @@ jobs:
           sudo apt-get install -y rsync openssh-client
 
           mkdir -p ~/.ssh
+          
           # Write key into file (more robust than relying only on ssh-agent) and set permissions
-          printf '%s\n' "$SSH_DEPLOY_KEY" > ~/.ssh/deploy_key
+          printf '%s' "$SSH_DEPLOY_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
           # Optional: show fingerprint for diagnostics
@@ -122,7 +124,7 @@ jobs:
           ssh-add -l || echo 'No keys found in agent'
 
           # Test connection (key auth only, no password fallback) with debug (shortened)
-          SSH_CMD="ssh -p ${REMOTE_PORT:-22} -o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -i ~/.ssh/deploy_key ${REMOTE_USER}@${REMOTE_HOST} echo 'SSH Test OK'"
+          SSH_CMD="ssh -p 22 -o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -i ~/.ssh/deploy_key ${REMOTE_USER}@${REMOTE_HOST} echo 'SSH Test OK'"
           echo "Checking connection: $SSH_CMD"
           set -o pipefail
           $SSH_CMD | sed -e 's/SSH Test OK/Connection successful/' || { echo 'Pre SSH test failed'; exit 2; }
