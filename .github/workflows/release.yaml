@@ -104,14 +104,28 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y rsync openssh-client
 
-          # Start ssh-agent and add deploy key
-          eval "$(ssh-agent -s)"
           mkdir -p ~/.ssh
-          echo "$SSH_DEPLOY_KEY" | tr -d '\r' | ssh-add -
+          # Write key into file (more robust than relying only on ssh-agent) and set permissions
+          printf '%s\n' "$SSH_DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
 
-          # Strict known_hosts handling to avoid MITM; add host key
-          ssh-keyscan -H "$REMOTE_HOST" >> ~/.ssh/known_hosts
+          # Optional: show fingerprint for diagnostics
+          ssh-keygen -lf ~/.ssh/deploy_key || true
+
+          # Add host key to known_hosts
+          ssh-keyscan -H "$REMOTE_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
           chmod 600 ~/.ssh/known_hosts
+
+          # Also load into agent (for commands without -i)
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/deploy_key || { echo 'ssh-add failed'; exit 1; }
+          ssh-add -l || echo 'No keys found in agent'
+
+          # Test connection (key auth only, no password fallback) with debug (shortened)
+          SSH_CMD="ssh -p ${REMOTE_PORT:-22} -o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -i ~/.ssh/deploy_key ${REMOTE_USER}@${REMOTE_HOST} echo 'SSH Test OK'"
+          echo "Checking connection: $SSH_CMD"
+          set -o pipefail
+          $SSH_CMD | sed -e 's/SSH Test OK/Connection successful/' || { echo 'Pre SSH test failed'; exit 2; }
 
       - name: Rsync site to remote
         env:
@@ -119,9 +133,11 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
         run: |
-          # Use rsync over SSH to mirror contents, deleting removed files
-          # The downloaded artifact contents are in the current directory
-          # after 'actions/download-artifact'.
+          # Rsync with explicit IdentityFile and IdentitiesOnly to ensure correct key is used
+          RSYNC_SSH="ssh -p 22 -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -i ~/.ssh/deploy_key"
+
           rsync -az --delete --checksum --human-readable --itemize-changes \
             --exclude='.git/' --exclude='.gitignore' \
-            ./ ${REMOTE_USER}@${REMOTE_HOST}:"${REMOTE_PATH}/"
+            -e "$RSYNC_SSH" ./ ${REMOTE_USER}@${REMOTE_HOST}:"${REMOTE_PATH}/"
+
+          echo 'Rsync finished.'
