@@ -95,12 +95,33 @@ jobs:
         with:
           name: page
 
-      - name: Install lftp
+      - name: Prepare SSH for rsync
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         run: |
+          # Install rsync and openssh-client
           sudo apt-get update -y
-          sudo apt-get install -y lftp
+          sudo apt-get install -y rsync openssh-client
 
-      - name: Transfer to webspace
+          # Start ssh-agent and add deploy key
+          eval "$(ssh-agent -s)"
+          mkdir -p ~/.ssh
+          echo "$SSH_DEPLOY_KEY" | tr -d '\r' | ssh-add -
+
+          # Strict known_hosts handling to avoid MITM; add host key
+          ssh-keyscan -H "$REMOTE_HOST" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Rsync site to remote
+        env:
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
         run: |
-          ls -lrt # debug listing
-          lftp -e "set ssl:verify-certificate false; open pmoscode.de; user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}; mirror -X .* -X .*/ --reverse --only-newer --ignore-time --verbose --delete ./ httpdocs/; bye"
+          # Use rsync over SSH to mirror contents, deleting removed files
+          # The downloaded artifact contents are in the current directory
+          # after 'actions/download-artifact'.
+          rsync -az --delete --checksum --human-readable --itemize-changes \
+            --exclude='.git/' --exclude='.gitignore' \
+            ./ ${REMOTE_USER}@${REMOTE_HOST}:"${REMOTE_PATH}/"
