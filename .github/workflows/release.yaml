@@ -95,11 +95,12 @@ jobs:
         with:
           name: page
 
-      - name: Prepare SSH for rsync
+      - name: Do rsync
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
         run: |
           # Install rsync and openssh-client
           sudo apt-get update -y
@@ -129,16 +130,10 @@ jobs:
           set -o pipefail
           $SSH_CMD | sed -e 's/SSH Test OK/Connection successful/' || { echo 'Pre SSH test failed'; exit 2; }
 
-      - name: Rsync site to remote
-        env:
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
-        run: |
-          # Rsync with explicit IdentityFile and IdentitiesOnly to ensure correct key is used
+          ### Deploy 
           RSYNC_SSH="ssh -i ~/.ssh/deploy_key"
 
-          rsync -az --delete --checksum --human-readable --itemize-changes \
+          rsync -avz --delete --human-readable --itemize-changes \
             --exclude='.git/' --exclude='.gitignore' \
             -e "$RSYNC_SSH" ./ ${REMOTE_USER}@${REMOTE_HOST}:"${REMOTE_PATH}"
 
