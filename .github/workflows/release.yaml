@@ -24,7 +24,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.151.1
+      HUGO_VERSION: 0.153.1
       STAGE: staging
     steps:
       - name: Check, if we're deploying production stage
@@ -42,7 +42,7 @@ jobs:
       - name: Set up golang
         uses: actions/setup-go@v6
         with:
-          go-version: '1.25.5'
+          go-version: '1.25.6'
 
       - name: Checkout
         uses: actions/checkout@v6
