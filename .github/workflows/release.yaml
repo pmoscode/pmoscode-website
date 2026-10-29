@@ -39,15 +39,15 @@ jobs:
       - name: Install Dart Sass
         run: sudo snap install dart-sass
 
-      - name: Set up golang
-        uses: actions/setup-go@v6
-        with:
-          go-version-file: 'go.mod'
-
       - name: Checkout
         uses: actions/checkout@v6
         with:
           lfs: true
+
+      - name: Set up golang
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: 'go.mod'
 
       - name: Install page theme
         run: |
